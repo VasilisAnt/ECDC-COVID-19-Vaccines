@@ -332,7 +332,7 @@ europe_first_dose_final%>%
   coord_flip()+
   labs(x = "", 
        y = "",
-       title = "% uptake of at least one dose in adults",
+       title = "% Uptake of at Least One dose in Adults",
        legend.position = "none")+
   theme_minimal()
   
