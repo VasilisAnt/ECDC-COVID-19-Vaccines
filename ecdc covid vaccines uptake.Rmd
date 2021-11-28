@@ -326,13 +326,14 @@ europe_first_dose_final%>%
   #scale_fill_gradientn(colours = colorspace::heat_hcl(10), guide = F)+
   #scale_fill_gradient2(low = muted("red"), mid = "orange", high = muted("blue"), midpoint = 0.7, guide = F)+
   scale_y_continuous(labels = percent_format(prefix = "", suffix = "%"))+
-  geom_text(aes(label = Adults_over_18 * 100, y = Adults_over_18 + 0.03), size = 4)+
+  geom_text(aes(label = round((Adults_over_18 * 100), 1), y = Adults_over_18 + 0.03), size = 4)+
   geom_flag(aes(country = str_to_lower(region)))+
   scale_country(guide = F)+
   coord_flip()+
   labs(x = "", 
        y = "",
        title = "% Uptake of at Least One dose in Adults",
+       subtitle = "till 2021/11/28",
        legend.position = "none")+
   theme_minimal()
   
