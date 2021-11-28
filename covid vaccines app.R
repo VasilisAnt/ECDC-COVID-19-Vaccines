@@ -17,9 +17,7 @@ library(janitor)
 
 #setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
 
-uptake_first_dose <- read_csv("europe_first_dose_final.csv")%>%
-                      select(-1)
-
+uptake_first_dose <- read_csv("europe_first_dose_final.csv")
 
 # shiny app
 
@@ -52,7 +50,7 @@ ui <- dashboardPage (
               ), # End of fluidRow
               fluidRow(
                 box(
-                  title = "Uptake of at Least One Dose",
+                  title = "Uptake of at Least One Dose in Adults (Percentage)",
                   width = 12,
                   plotOutput("one_dose_adults")
                 )
@@ -88,8 +86,7 @@ server <- function(input, output, session) {
       coord_flip()+
       labs(x = "", 
            y = "",
-           title = "% Uptake of at Least One dose in Adults",
-           subtitle = "till 2021/11/28",
+           title = "till 2021/11/28",
            legend.position = "none")+
       theme_minimal()
     

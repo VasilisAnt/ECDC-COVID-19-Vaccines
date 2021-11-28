@@ -19,6 +19,7 @@ library(openxlsx)
 library(ggflags)
 library(scales)
 library(utils)
+library(readr)
 
 ```
 
@@ -311,7 +312,14 @@ europe_first_dose_final <- adults_first_dose_perc%>%
     vars(starts_with("Age")), 
     funs(case_when( 
       . >= 100 ~ 100, 
-      TRUE ~ .)))
+      TRUE ~ .)))%>%
+  mutate_at(
+    c("HCW"),
+    funs(case_when(
+      . >= 100 ~ 100,
+      TRUE ~.
+    )))
+
 
 ## Europe first does in Adults over 18 and per age category uptake of first dose (2021-11-09)  
 
@@ -338,9 +346,9 @@ europe_first_dose_final%>%
   theme_minimal()
 
 # Exporting final tibble
-#setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
+setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
 
-write.csv(europe_first_dose_final, "europe_first_dose_final.csv")
+write_csv(europe_first_dose_final, "europe_first_dose_final.csv")
 
 
 ```
