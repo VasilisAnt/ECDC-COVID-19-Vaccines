@@ -238,7 +238,7 @@ eu_first_dose_hlws_perc_wide <- eu_first_dose_hlws_perc%>%
 
 
 # In the categories <60 and >60 are included everyone (also those with unknown age)
-# Only 7 countires are included in the over-under 60 category, greece are one of them
+# Only 7 countires are included in the over-under 60 category, Greece is one of them
 
 eu_first_dose_over_under_60_perc <- data%>%
   filter(target_group %in% c("1_Age<60","1_Age60+"))%>%
