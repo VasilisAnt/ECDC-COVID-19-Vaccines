@@ -46,7 +46,7 @@ countries_code <- read_excel("country codes.xlsx")%>%
 
 ## Important notes
 
-# The denominator in the target group "ALL" does not refer in the population of adults over 18 in that country, as indicated in the ecdc site, but in the total population of the country (https://www.ecdc.europa.eu/sites/default/files/documents/Variable_Dictionary_VaccineTracker-04-11-2021.pdf)
+# The denominator in the target group "ALL" does not refer in the population of adults over 18 in that country, as indicated in the ECDC site, but in the total population of the country (https://www.ecdc.europa.eu/sites/default/files/documents/Variable_Dictionary_VaccineTracker-04-11-2021.pdf)
 
 
 
@@ -336,8 +336,11 @@ europe_first_dose_final%>%
        subtitle = "till 2021/11/28",
        legend.position = "none")+
   theme_minimal()
-  
 
+# Exporting final tibble
+#setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
+
+write.csv(europe_first_dose_final, "europe_first_dose_final.csv")
 
 
 ```
