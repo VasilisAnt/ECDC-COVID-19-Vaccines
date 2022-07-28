@@ -49,6 +49,7 @@ countries_code <- read_excel("country codes.xlsx")%>%
 
 # The denominator in the target group "ALL" does not refer in the population of adults over 18 in that country, as indicated in the ECDC site, but in the total population of the country (https://www.ecdc.europa.eu/sites/default/files/documents/Variable_Dictionary_VaccineTracker-04-11-2021.pdf)
 
+today.date <- Sys.Date()
 
 
 ```
@@ -318,12 +319,18 @@ europe_first_dose_final <- adults_first_dose_perc%>%
     funs(case_when(
       . >= 100 ~ 100,
       TRUE ~.
+    )))%>%
+  mutate_at(
+    c("Adults_over_18"),
+    funs(case_when(
+      . >= 100 ~ 100,
+      TRUE ~.
     )))
-
 
 ## Europe first does in Adults over 18 and per age category uptake of first dose (2021-11-09)  
 
 europe_first_dose_final%>%
+  select(-Total_Population)%>%
   filter(!is.na(Adults_over_18))%>%
   mutate(Adults_over_18 = Adults_over_18 / 100)%>%
   mutate(region = if_else(region == "EL", "GR", region))%>%
@@ -341,12 +348,12 @@ europe_first_dose_final%>%
   labs(x = "", 
        y = "",
        title = "% Uptake of at Least One dose in Adults",
-       subtitle = "till 2021/11/28",
+       subtitle = today.date,
        legend.position = "none")+
   theme_minimal()
 
 # Exporting final tibble
-setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
+#setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
 
 write_csv(europe_first_dose_final, "europe_first_dose_final.csv")
 

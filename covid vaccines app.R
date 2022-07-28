@@ -17,7 +17,11 @@ library(janitor)
 
 #setwd("D:/GitHub/ECDC-COVID-19-Vaccines")
 
-uptake_first_dose <- read_csv("europe_first_dose_final.csv")
+uptake_first_dose <- read_csv("europe_first_dose_final.csv")%>%
+  select(-Total_Population)
+
+today.date <- Sys.Date()
+
 
 # shiny app
 
@@ -42,7 +46,7 @@ ui <- dashboardPage (
       tabItem(tabName = "vaccines",
               fluidRow(
                 box(
-                  title = "Uptake of first dose of vaccines (Percentage) till 2021/11/28",
+                  title = paste("Uptake of first dose of vaccines (Percentage) till", today.date, sep = " "),
                   width = 12,
                   DT::DTOutput("europe_first_dose_final")
                   
@@ -86,7 +90,7 @@ server <- function(input, output, session) {
       coord_flip()+
       labs(x = "", 
            y = "",
-           title = "till 2021/11/28",
+           title = paste("till", today.date, sep = " "),
            legend.position = "none")+
       theme_minimal()
     
